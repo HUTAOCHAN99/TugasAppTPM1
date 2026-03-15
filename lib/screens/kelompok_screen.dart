@@ -2,25 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class KelompokScreen extends StatelessWidget {
-  // Hapus keyword 'const' dari konstruktor
   KelompokScreen({super.key});
 
   final List<Map<String, String>> anggotaKelompok = const [
-    {
-      'nama': 'Ahmad Zhofir Amanullah Nayif',
-      'nim': '123230056',
-    },
-    {
-      'nama': 'Priska Natalia Sembiring',
-      'nim': '123230055',
-    },
-    {
-      'nama': 'Anak Agung Ngurah Dharma Yudha',
-      'nim': '123230080',
-    }
+    {'nama': 'Ahmad Zhofir Amanullah Nayif', 'nim': '123230056'},
+    {'nama': 'Priska Natalia Sembiring', 'nim': '123230055'},
+    {'nama': 'Anak Agung Ngurah Dharma Yudha', 'nim': '123230080'},
+    {'nama': 'Dafa Firmansah', 'nim': '123230001'},
   ];
 
-  // Daftar warna yang akan digunakan untuk setiap anggota
   final List<Color> warnaAnggota = [
     Colors.red,
     Colors.blue,
@@ -39,21 +29,21 @@ class KelompokScreen extends StatelessWidget {
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w600,
             fontSize: 20,
-            color: Colors.white, // Ubah warna teks menjadi putih
+            color: Colors.white,
           ),
         ),
-        backgroundColor: Colors.orange.shade700, // Samakan dengan warna header
-        foregroundColor: Colors.white, // Ubah warna icon menjadi putih
+        backgroundColor: Colors.orange.shade700,
+        foregroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
         leading: IconButton(
           icon: Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: Colors.white.withValues(alpha: 0.2), // Ubah background icon menjadi transparan putih
+              color: Colors.white.withValues(alpha: 0.2),
               borderRadius: BorderRadius.circular(12),
             ),
-            child: const Icon(Icons.arrow_back, color: Colors.white), // Ubah warna icon menjadi putih
+            child: const Icon(Icons.arrow_back, color: Colors.white),
           ),
           onPressed: () => Navigator.pop(context),
         ),
@@ -63,15 +53,11 @@ class KelompokScreen extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [
-              Colors.orange.shade50,
-              Colors.white,
-            ],
+            colors: [Colors.orange.shade50, Colors.white],
           ),
         ),
         child: Column(
           children: [
-            // Header dengan design modern
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(30),
@@ -91,16 +77,12 @@ class KelompokScreen extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  // Ganti icon dengan gambar dari assets
                   Container(
                     width: 100,
                     height: 100,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      border: Border.all(
-                        color: Colors.white,
-                        width: 3,
-                      ),
+                      border: Border.all(color: Colors.white, width: 3),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.orange.shade200,
@@ -154,10 +136,7 @@ class KelompokScreen extends StatelessWidget {
                 ],
               ),
             ),
-
             const SizedBox(height: 24),
-
-            // Title Section
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
@@ -192,10 +171,7 @@ class KelompokScreen extends StatelessWidget {
                 ],
               ),
             ),
-
             const SizedBox(height: 16),
-
-            // List Anggota dengan warna berbeda untuk setiap anggota
             Expanded(
               child: ListView.builder(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -203,7 +179,7 @@ class KelompokScreen extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final anggota = anggotaKelompok[index];
                   final warna = warnaAnggota[index % warnaAnggota.length];
-                  
+
                   return Container(
                     margin: const EdgeInsets.only(bottom: 12),
                     decoration: BoxDecoration(
@@ -222,14 +198,12 @@ class KelompokScreen extends StatelessWidget {
                       child: InkWell(
                         borderRadius: BorderRadius.circular(20),
                         onTap: () {
-                          // Aksi ketika anggota dipilih
                           _showAnggotaDetail(context, anggota, warna);
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(16),
                           child: Row(
                             children: [
-                              // Profile dengan warna berbeda
                               Container(
                                 width: 60,
                                 height: 60,
@@ -263,8 +237,6 @@ class KelompokScreen extends StatelessWidget {
                                 ),
                               ),
                               const SizedBox(width: 16),
-                              
-                              // Informasi Anggota
                               Expanded(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -298,8 +270,6 @@ class KelompokScreen extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              
-                              // Badge dengan warna yang sama
                               Container(
                                 padding: const EdgeInsets.symmetric(
                                   horizontal: 12,
@@ -337,14 +307,15 @@ class KelompokScreen extends StatelessWidget {
     );
   }
 
-  // Fungsi untuk menampilkan detail anggota
-  void _showAnggotaDetail(BuildContext context, Map<String, String> anggota, Color warna) {
+  void _showAnggotaDetail(
+    BuildContext context,
+    Map<String, String> anggota,
+    Color warna,
+  ) {
     showDialog(
       context: context,
       builder: (context) => Dialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
         elevation: 0,
         backgroundColor: Colors.transparent,
         child: Container(
@@ -363,16 +334,12 @@ class KelompokScreen extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              // Avatar besar
               Container(
                 width: 100,
                 height: 100,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
-                    colors: [
-                      warna,
-                      warna.withValues(alpha: 0.7),
-                    ],
+                    colors: [warna, warna.withValues(alpha: 0.7)],
                   ),
                   shape: BoxShape.circle,
                   boxShadow: [
@@ -395,8 +362,6 @@ class KelompokScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              
-              // Nama
               Text(
                 anggota['nama']!,
                 style: GoogleFonts.poppins(
@@ -406,8 +371,6 @@ class KelompokScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 8),
-              
-              // NIM
               Container(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 20,
@@ -427,12 +390,14 @@ class KelompokScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
-              
-              // Info tambahan
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.email_outlined, color: Colors.grey.shade500, size: 18),
+                  Icon(
+                    Icons.email_outlined,
+                    color: Colors.grey.shade500,
+                    size: 18,
+                  ),
                   const SizedBox(width: 8),
                   Text(
                     '${anggota['nama']!.toLowerCase().replaceAll(' ', '.')}@student.com',
@@ -447,10 +412,14 @@ class KelompokScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.phone_outlined, color: Colors.grey.shade500, size: 18),
+                  Icon(
+                    Icons.phone_outlined,
+                    color: Colors.grey.shade500,
+                    size: 18,
+                  ),
                   const SizedBox(width: 8),
                   Text(
-                    '08${anggota['nim']!.substring(4)}-${anggota['nim']!.substring(0,4)}',
+                    '08${anggota['nim']!.substring(4)}-${anggota['nim']!.substring(0, 4)}',
                     style: GoogleFonts.poppins(
                       fontSize: 14,
                       color: Colors.grey.shade600,
@@ -459,8 +428,6 @@ class KelompokScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 24),
-              
-              // Tombol Tutup
               ElevatedButton(
                 onPressed: () => Navigator.pop(context),
                 style: ElevatedButton.styleFrom(
